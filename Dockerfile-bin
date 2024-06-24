@@ -1,0 +1,20 @@
+FROM osrf/ros:humble-desktop
+
+RUN apt-get update && apt-get install -y \
+        apt-utils \
+        software-properties-common \
+        git \
+        tmux \
+        tmuxinator \
+        vim \
+        python-is-python3 \
+    && rm -rf /var/lib/apt/lists/* 
+
+RUN apt-get update && apt-get install -y \
+        ros-humble-aerostack2 \
+    && rm -rf /var/lib/apt/lists/* 
+
+RUN git clone -b 1.0.9 https://github.com/pariaspe/project_gazebo.git gazebo_lab
+WORKDIR /gazebo_lab
+
+CMD ["bash"]
